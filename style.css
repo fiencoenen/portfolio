@@ -1,0 +1,677 @@
+/* ==========================================================================
+   1. RESET & GLOBAL TYPOGRAPHY
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* ==========================================================================
+   2. LINKS, NAVIGATION & HOVER / FOCUS STATES
+   ========================================================================== */
+
+a,
+.filter-btn {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  padding: 0;
+}
+
+.nav-link:hover,
+.process-link:hover,
+.contact-link:hover,
+.filter-btn:hover,
+.filter-btn.active,
+.menu-project-card:hover .menu-project-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:focus-visible,
+.filter-btn:focus-visible {
+  outline: 1.5px solid #000000;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   3. PAGE SHELL, GLOBAL HEADER & GLOBAL FOOTER
+   ========================================================================== */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.global-header {
+  position: relative;
+  width: 100%;
+  min-height: 60px;
+  padding: 20px 22px 0 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.header-left {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  z-index: 2;
+}
+
+.header-left--start {
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+/* Name only shown on the start screen, non-clickable */
+.home-name {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #000000;
+  white-space: nowrap;
+  cursor: default;
+  z-index: 3;
+}
+
+.header-right {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 4px;
+  z-index: 2;
+}
+
+.global-footer {
+  width: 100%;
+  padding: 40px 22px 20px 22px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #999999;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   4. START SCREEN & CENTRAL CAROUSEL (GLITCH-FREE STACKED SLIDES)
+   ========================================================================== */
+
+.page--start {
+  height: 100vh;
+  min-height: 680px;
+}
+
+.start-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 40px;
+}
+
+.carousel-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 550px;
+}
+
+/* All 5 images remain pre-decoded and laid out at their own aspect ratios
+   in the same centered stage; toggling .is-active switches instantaneously
+   with zero layout shift or image re-decode glitch between portrait & landscape. */
+.carousel-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.carousel-img.is-active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.carousel-img--1 {
+  width: 735px;
+  max-width: 86vw;
+  max-height: 66vh;
+}
+
+.carousel-img--3,
+.carousel-img--5 {
+  width: 635px;
+  max-width: 82vw;
+  max-height: 66vh;
+}
+
+.carousel-img--2,
+.carousel-img--4 {
+  height: 535px;
+  max-height: 70vh;
+  max-width: 82vw;
+}
+
+/* ==========================================================================
+   5. PROJECTS MENU PAGE
+   ========================================================================== */
+
+.menu-filters {
+  padding: 26px 22px 0 22px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.filter-row {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+}
+
+.filter-label {
+  font-weight: 700;
+  width: 64px;
+  flex-shrink: 0;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.filter-item {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.menu-projects {
+  width: 100%;
+  max-width: 1280px;
+  margin: 54px auto 120px auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 92px;
+}
+
+.menu-project-card {
+  display: block;
+  margin: 0 auto;
+}
+
+.menu-project-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Individual project widths on menu (~8% larger than example wireframe) */
+.menu-project-card--1 {
+  width: 326px;
+}
+
+.menu-project-card--2 {
+  width: 498px;
+}
+
+.menu-project-card--3 {
+  width: 342px;
+}
+
+.menu-project-card--4 {
+  width: 592px;
+}
+
+.menu-project-card--5 {
+  width: 482px;
+}
+
+.menu-project-meta {
+  margin-top: 12px;
+  text-align: left;
+}
+
+.menu-project-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  line-height: 1.3;
+  display: inline-block;
+}
+
+.menu-project-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #999999;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+.menu-empty {
+  font-size: 14px;
+  color: #666666;
+  margin: 120px auto;
+  text-align: center;
+}
+
+/* ==========================================================================
+   6. PROJECT INFORMATION PAGES
+   ========================================================================== */
+
+.project-main {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 150px 24px 130px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-main--p5 {
+  padding-top: 98px;
+  padding-bottom: 120px;
+}
+
+/* Text block aligned with the first image's left and right edges */
+.project-intro-block {
+  margin: 0 auto 22px auto;
+  text-align: left;
+}
+
+.project-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.project-category {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #000000;
+}
+
+.project-year {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #000000;
+  margin-bottom: 24px;
+}
+
+.project-description p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000000;
+  margin-bottom: 16px;
+}
+
+.project-description p:last-child {
+  margin-bottom: 0;
+}
+
+.process-link-wrap {
+  margin-top: 6px;
+}
+
+.process-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.project-images {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 92px;
+}
+
+.project-image-item {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+.project-image-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Project 1 widths (~8.5% larger than wireframe) */
+.w-p1-intro,
+.w-p1-img1 {
+  width: 404px;
+}
+
+.w-p1-spread {
+  width: 638px;
+}
+
+/* Project 2 widths (~8.5% larger than wireframe) */
+.w-p2-intro,
+.w-p2-img {
+  width: 586px;
+}
+
+/* Project 3 widths (~8.5% larger than wireframe) */
+.w-p3-intro,
+.w-p3-img1 {
+  width: 404px;
+}
+
+.w-p3-img2 {
+  width: 774px;
+}
+
+.w-p3-img3 {
+  width: 594px;
+}
+
+/* Project 4 widths (~8.5% larger than wireframe) */
+.w-p4-intro,
+.w-p4-img {
+  width: 698px;
+}
+
+/* Project 5 widths (~8% larger than wireframe) */
+.w-p5-intro,
+.w-p5-img {
+  width: 764px;
+}
+
+/* ==========================================================================
+   7. PROCESS PAGES (PROJECT 1 & PROJECT 4)
+   ========================================================================== */
+
+.process-main {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 150px 24px 140px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process-main--p4 {
+  padding-top: 130px;
+}
+
+.process-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.process-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Caption block aligned with the image it introduces */
+.process-caption {
+  margin: 0 auto 20px auto;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000000;
+}
+
+/* All portrait and landscape process images are individually horizontally centred */
+.process-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 92px;
+}
+
+.process-images img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+/* Project 1 Process image & caption widths (~8.5% larger than wireframe) */
+.w-p1proc-1 {
+  width: 430px;
+}
+
+.w-p1proc-2 {
+  width: 638px;
+}
+
+.w-p1proc-4 {
+  width: 432px;
+}
+
+.w-p1proc-5 {
+  width: 680px;
+}
+
+.w-p1proc-8 {
+  width: 852px;
+}
+
+/* Project 4 Process image & caption widths (~8.5% larger than wireframe, with prominent portrait sizing) */
+.w-p4proc-1 {
+  width: 712px;
+}
+
+.w-p4proc-2 {
+  width: 636px;
+}
+
+.w-p4proc-3 {
+  width: 504px;
+}
+
+.w-p4proc-landscape {
+  width: 588px;
+}
+
+.w-p4proc-portrait {
+  width: 446px;
+}
+
+.w-p4proc-11 {
+  width: 558px;
+}
+
+/* ==========================================================================
+   8. ABOUT PAGE
+   ========================================================================== */
+
+.about-main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px 22px 10px 22px;
+}
+
+.about-contact {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #000000;
+  margin-bottom: 80px;
+}
+
+.about-contact div {
+  margin-bottom: 1px;
+}
+
+.about-bottom {
+  width: 100%;
+  max-width: 1320px;
+  display: grid;
+  grid-template-columns: minmax(340px, 650px) minmax(280px, 365px);
+  column-gap: 44px;
+  align-items: end;
+  margin-top: auto;
+}
+
+.about-logo-wrap {
+  width: 100%;
+  max-width: 650px;
+}
+
+.about-logo-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.about-bio {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.36;
+  color: #000000;
+  padding-bottom: 24px;
+}
+
+.about-bio p {
+  margin-bottom: 16px;
+}
+
+.about-bio p:last-child {
+  margin-bottom: 0;
+}
+
+.about-bio strong {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   9. FALLBACK / 404 VIEW & RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+.not-found-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .about-bottom {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  .about-bio {
+    max-width: 420px;
+  }
+
+  .w-p1-intro,
+  .w-p1-img1,
+  .w-p1-spread,
+  .w-p2-intro,
+  .w-p2-img,
+  .w-p3-intro,
+  .w-p3-img1,
+  .w-p3-img2,
+  .w-p3-img3,
+  .w-p4-intro,
+  .w-p4-img,
+  .w-p5-intro,
+  .w-p5-img,
+  .w-p1proc-1,
+  .w-p1proc-2,
+  .w-p1proc-4,
+  .w-p1proc-5,
+  .w-p1proc-8,
+  .w-p4proc-1,
+  .w-p4proc-2,
+  .w-p4proc-3,
+  .w-p4proc-landscape,
+  .w-p4proc-portrait,
+  .w-p4proc-11,
+  .menu-project-card--1,
+  .menu-project-card--2,
+  .menu-project-card--3,
+  .menu-project-card--4,
+  .menu-project-card--5 {
+    max-width: 100%;
+  }
+}
